@@ -1,0 +1,20 @@
+[tool.poetry]
+name = "messagingservice"
+version = "0.1.0"
+description = ""
+authors = ["jylu lyapunova <jylilapa@yandex.ru>"]
+readme = "README.md"
+
+[tool.poetry.dependencies]
+python = "^3.13"
+django = "^5.1.5"
+black = "^24.10.0"
+
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+
+[tool.black]
+line-length = 119
