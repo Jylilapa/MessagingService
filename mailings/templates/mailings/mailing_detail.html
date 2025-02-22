@@ -1,0 +1,25 @@
+{% extends "recipients/base.html" %}
+{% block content %}
+    <div class="row mt-5 mx-auto p-2">
+        <div class="col-1"></div>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                  <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Рассылка</h5>
+                                <p class="card-text">Сообщение: {{ mailing.message }} </p>
+                                <p class="card-text">Получатели: {{ mailing.recipients }} </p>
+                                 <form method="post">
+                                    {% csrf_token %}
+                                    <button type="submit" class="btn btn-outline-primary m-1">Отправить
+                                    </button>
+                                </form>
+                                <a class="btn btn-primary" href="{% url 'mailings:mailing_update' mailing.pk %}" role="button">Редактировать</a>
+                                <a class="btn btn-primary" href="{% url 'mailings:mailing_confirm_delete.html' mailing.pk %}" role="button">Удалить</a>
+                            </div>
+                        </div>
+                  </div>
+            </div>
+        <div class="col-1"></div>
+    </div>
+{% endblock %}
