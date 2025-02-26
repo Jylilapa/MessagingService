@@ -13,12 +13,14 @@
     <div class="pricing-header px-3 py-3 pt-md-5 pb-md-4 mx-auto text-center">
         <h1 class="display-4">Совушка</h1>
         <p class="lead">Совушка - удобный сервис для создания и управления рассылками</p>
+        {% if user.is_authenticated %}
         <a class="btn btn-primary" href="{% url 'recipients:recipient_create' %}" role="button">
             Добавить получателя рассылки
         </a>
         <a class="btn btn-primary" href="{% url 'recipients:letter_create' %}" role="button">
             Создать письмо для рассылки
         </a>
+        {% endif %}
     </div>
 
 {% block content %}

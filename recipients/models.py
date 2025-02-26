@@ -1,16 +1,22 @@
 from django.db import models
 
+from users.models import User
+
 
 class Recipient(models.Model):
     email = models.CharField(max_length=50, unique=True, verbose_name="Адрес электронной почты")
     first_name = models.CharField(max_length=100, verbose_name="Имя")
     last_name = models.CharField(max_length=100, verbose_name="Фамилия")
     comments = models.TextField(null=True, blank=True, verbose_name="Комментарии")
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Владелец")
 
     class Meta:
         verbose_name = "Получатель"
         verbose_name_plural = "Получатели"
         ordering = ["email"]
+        permissions = [
+            ("can_view_list_recipients", "Can view list recipients"),
+        ]
 
     def __str__(self):
         return self.email
@@ -19,6 +25,7 @@ class Recipient(models.Model):
 class Letter(models.Model):
     subject = models.CharField(max_length=200, verbose_name="Тема письма")
     message = models.TextField(verbose_name="Тело письма")
+    owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Владелец")
 
     class Meta:
         verbose_name = "Письмо"

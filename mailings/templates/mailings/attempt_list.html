@@ -1,0 +1,22 @@
+{% extends "recipients/base.html" %}
+{% block content %}
+    <div class="row mt-5 mx-auto p-2">
+        <div class="col-1"></div>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                {% for mailing in object_list %}
+                  <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Попытки рассылок</h5>
+                            <p class="card-text">Дата и время попытки: {{ attempt.attempt_mailing }}</p>
+                            <p class="card-text">Статус: {{ attempt.status }}</p>
+                            <p class="card-text">Ответ почтового сервера: {{ attempt.response }} </p>
+                            <p class="card-text">Рассылка: {{ attempt.mailing }} </p>
+                        </div>
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
+        <div class="col-1"></div>
+    </div>
+{% endblock %}

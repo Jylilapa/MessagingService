@@ -1,17 +1,16 @@
 {% extends "recipients/base.html" %}
 {% block content %}
-<div class="row">
+    <div class="row">
     <div class="col-6">
         <form class="row" method="post" enctype="multipart/form-data">
             <div class="card">
-                <p class="card-text">Действительно хотите удалить рассылку на тему: {{ object.message }}</p>
                 <div class="card-body">
                     {% csrf_token %}
+                    {{ form.as_p }}
                 </div>
                 <button type="submit" class="btn btn-primary">
-                    Удалить
+                    Войти
                 </button>
-                <a class="btn btn-primary" href="{% url 'mailings:mailing_list' %}" role="button">Отменить</a>
             </div>
         </form>
     </div>
