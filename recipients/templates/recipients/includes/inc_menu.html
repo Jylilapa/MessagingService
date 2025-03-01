@@ -2,7 +2,7 @@
         <h5 class="my-0 mr-md-auto font-weight-normal">Совушка</h5>
         <nav class="ms-5">
             <a class="p-2 btn btn-outline-primary" href="/">Главная</a>
-            {% if user.is_authenticated %}
+            {% if user.is_authenticated and user == letter.owner and user == mailing.owner%}
             <a class="p-2 btn btn-outline-primary" href="{% url 'recipients:letter_list' %}">Все сообщения</a>
             <a class="p-2 btn btn-outline-primary" href="{% url 'mailings:mailing_list' %}" role="button">
             Список всех рассылок
@@ -11,10 +11,17 @@
             <a class="p-2 btn btn-outline-primary" href="{% url 'mailings:attempt_list' %}">Попытки рассылок</a>
             {% endif %}
             {% if user.is_authenticated %}
+            <a class="p-2 btn btn-outline-primary" href="{% url 'users:user_detail' user.pk %}">Профиль</a>
             <a class="p-2 btn btn-outline-primary" href="{% url 'users:logout' %}">Выход</a>
             {% else %}
             <a class="p-2 btn btn-outline-primary" href="{% url 'users:login' %}">Вход</a>
             <a class="p-2 btn btn-outline-primary" href="{% url 'users:register' %}">Регистрация</a>
+            {% endif %}
+            {% if perms.mailings.can_view_list_mailings and perms.users.can_view_list_users%}
+            <a class="p-2 btn btn-outline-primary" href="{% url 'mailings:mailing_list' %}" role="button">
+            Список всех рассылок
+            </a>
+            <a class="p-2 btn btn-outline-primary" href="{% url 'users:user_list' %}">Список пользователей</a>
             {% endif %}
         </nav>
 </div>

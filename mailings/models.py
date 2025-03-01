@@ -7,14 +7,15 @@ from users.models import User
 
 class Mailing(models.Model):
     STATUS_CHOICES = [
-        ('created', 'Создана'),
-        ('started', 'Запущена'),
-        ('completed', 'Завершена'),
+        ("created", "Создана"),
+        ("started", "Запущена"),
+        ("completed", "Завершена"),
     ]
 
     first_sent = models.DateTimeField(auto_now_add=True, verbose_name="Дата и время первой отправки")
     end_sent = models.DateTimeField(auto_now_add=True, verbose_name="Дата и время окончания отправки")
-    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='created', verbose_name="Статус отправки")
+    status = models.CharField(max_length=20, choices=STATUS_CHOICES, default="created", verbose_name="Статус отправки")
+    is_active = models.BooleanField(default=True, verbose_name="активна")
     message = models.ForeignKey(Letter, on_delete=SET_NULL, null=True, blank=True, verbose_name="Сообщение")
     recipients = models.ManyToManyField(Recipient, verbose_name="Получатели")
     owner = models.ForeignKey(User, on_delete=models.SET_NULL, null=True, blank=True, verbose_name="Владелец")
@@ -25,6 +26,7 @@ class Mailing(models.Model):
         ordering = ["status"]
         permissions = [
             ("can_view_list_mailings", "Can view list mailings"),
+            ("can_stop_mailings", "Can stop mailings"),
         ]
 
     def __str__(self):

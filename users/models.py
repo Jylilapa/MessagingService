@@ -15,9 +15,8 @@ class User(AbstractUser):
         verbose_name_plural = "Пользователи"
         permissions = [
             ("can_view_list_users", "Can view list users"),
+            ("can_block_user", "Can block user"),
         ]
 
     def __str__(self):
         return self.email
-
-

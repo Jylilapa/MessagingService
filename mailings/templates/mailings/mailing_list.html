@@ -12,8 +12,7 @@
                             <p class="card-text">Дата и время окончания отправки: {{ mailing.end_sent }}</p>
                             <p class="card-text">Статус отправки: {{ mailing.status }} </p>
                             <p class="card-text">Сообщение: {{ mailing.message }} </p>
-                            <p class="card-text">Получатели: {{ mailing.recipients }} </p>
-                            <a class="btn btn-primary" href="{% url 'mailings:mailing_detail' mailing.pk %}" role="button">Детали для отправки</a>
+                            <a class="btn btn-primary" href="{% url 'mailings:mailing_detail' mailing.pk %}" role="button">Детали</a>
                       </div>
                     </div>
                   </div>

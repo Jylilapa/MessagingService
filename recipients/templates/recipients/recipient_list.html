@@ -1,6 +1,6 @@
 {% extends "recipients/base.html" %}
 {% block content %}
-     {% if user.is_authenticated %}
+     {% if user.is_authenticated and user == recipient.owner and user == mailing.owner or perms.recipients.can_view_list_recipients %}
     <div class="row mt-5 mx-auto p-2">
         <div class="col-1"></div>
             <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -22,7 +22,7 @@
                         <div class="card-body">
                             <h5 class="card-title">Рассылки</h5>
                             <p class="card-text">Количество рассылок: {{ count_mailing }}</p>
-                            <p class="card-text">Количество активный рассылок: {{ active_mailings_count }}</p>
+                            <p class="card-text">Количество активных рассылок: {{ active_mailings_count }}</p>
                         </div>
                     </div>
                   </div>

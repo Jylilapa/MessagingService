@@ -25,7 +25,6 @@ INSTALLED_APPS = [
     "mailings",
     "recipients",
     "users",
-
 ]
 
 MIDDLEWARE = [
@@ -96,8 +95,6 @@ USE_I18N = True
 USE_TZ = True
 
 
-
-
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = (BASE_DIR / "static",)
@@ -108,7 +105,7 @@ MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(BASE_DIR, "media")
 
 
-EMAIL_HOST = 'smtp.yandex.ru'
+EMAIL_HOST = "smtp.yandex.ru"
 EMAIL_PORT = 465
 EMAIL_HOST_USER = "servis-messaging1@yandex.ru"
 EMAIL_HOST_PASSWORD = "eesacbjzaqwkykaa"
@@ -127,8 +124,5 @@ LOGOUT_REDIRECT_URL = "/"
 CACHE_ENABLED = True
 if CACHE_ENABLED:
     CACHES = {
-        "default": {
-            "BACKEND": "django.core.cache.backends.redis.RedisCache",
-            "LOCATION": "redis://localhost:6379"
-        }
+        "default": {"BACKEND": "django.core.cache.backends.redis.RedisCache", "LOCATION": "redis://localhost:6379"}
     }

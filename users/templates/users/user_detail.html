@@ -1,0 +1,18 @@
+{% extends "recipients/base.html" %}
+{% block content %}
+    <div class="row mt-5 mx-auto p-2">
+        <div class="col-1"></div>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                  <div class="col">
+                        <div class="card">
+                            <div class="card-body">
+                                <h5 class="card-title">Профиль</h5>
+                                <p class="card-text">Адрес электронной почты: {{ user.email }}</p>
+                                <p class="card-text">Имя: {{ user.username }}</p>
+                            </div>
+                        </div>
+                  </div>
+            </div>
+        <div class="col-1"></div>
+    </div>
+{% endblock %}

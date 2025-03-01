@@ -2,8 +2,18 @@ from django.urls import path
 from django.views.decorators.cache import cache_page
 
 from recipients.apps import RecipientsConfig
-from recipients.views import RecipientListView, RecipientDetailView, RecipientCreateView, RecipientUpdateView, \
-    RecipientDeleteView, LetterDetailView, LetterListView, LetterCreateView, LetterUpdateView, LetterDeleteView
+from recipients.views import (
+    RecipientListView,
+    RecipientDetailView,
+    RecipientCreateView,
+    RecipientUpdateView,
+    RecipientDeleteView,
+    LetterDetailView,
+    LetterListView,
+    LetterCreateView,
+    LetterUpdateView,
+    LetterDeleteView,
+)
 
 app_name = RecipientsConfig.name
 

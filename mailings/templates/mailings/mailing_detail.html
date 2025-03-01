@@ -15,7 +15,10 @@
                                     </button>
                                 </form>
                                 <a class="btn btn-primary" href="{% url 'mailings:mailing_update' mailing.pk %}" role="button">Редактировать</a>
-                                <a class="btn btn-primary" href="{% url 'mailings:mailing_confirm_delete.html' mailing.pk %}" role="button">Удалить</a>
+                                <a class="btn btn-primary" href="{% url 'mailings:mailing_delete' mailing.pk %}" role="button">Удалить</a>
+                                {% if perms.mailings.can_stop_mailings %}
+                                <a class="btn btn-primary" href="{% url 'mailings:mailing_moderator_form' mailing.pk %}" role="button">Заблокировать</a>
+                                {% endif %}
                             </div>
                         </div>
                   </div>
