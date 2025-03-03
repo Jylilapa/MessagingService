@@ -50,6 +50,12 @@ class UserDetailView(LoginRequiredMixin, DetailView):
 class UserListView(LoginRequiredMixin, ListView):
     model = User
 
+    def get_queryset(self):
+        user = self.request.user
+        if user.groups.filter(name="Менеджер").exists():
+            return User.objects.all()
+        return HttpResponseForbidden
+
 
 class UserModeratorView(LoginRequiredMixin, View):
     model = User

@@ -18,7 +18,11 @@ class MailingListView(LoginRequiredMixin, ListView):
     template_name = "mailings/mailing_list.html"
 
     def get_queryset(self):
-        return get_mailings_from_cache()
+        user = self.request.user
+        if user.groups.filter(name="Менеджер").exists():
+            return Mailing.objects.all()
+        return Mailing.objects.filter(owner=user.id)
+
 
     def get_context_data(self, **kwargs):
         context_data = super().get_context_data(**kwargs)

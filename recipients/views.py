@@ -12,7 +12,11 @@ class RecipientListView(ListView):
     model = Recipient
 
     def get_queryset(self):
-        return get_recipients_from_cache()
+        user = self.request.user
+        if user.groups.filter(name="Менеджер").exists():
+            return Recipient.objects.all()
+        return Recipient.objects.filter(owner=user.id)
+
 
 
 class RecipientDetailView(LoginRequiredMixin, DetailView):
