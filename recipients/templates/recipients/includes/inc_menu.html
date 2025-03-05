@@ -2,7 +2,7 @@
         <h5 class="my-0 mr-md-auto font-weight-normal">Совушка</h5>
         <nav class="ms-5">
             <a class="p-2 btn btn-outline-primary" href="/">Главная</a>
-            {% if user.is_authenticated and user == letter.owner and user == mailing.owner%}
+            {% if user.is_authenticated and user == letter.owner and user == mailing.owner %}
             <a class="p-2 btn btn-outline-primary" href="{% url 'recipients:letter_list' %}">Все сообщения</a>
             <a class="p-2 btn btn-outline-primary" href="{% url 'mailings:mailing_list' %}" role="button">
             Список всех рассылок

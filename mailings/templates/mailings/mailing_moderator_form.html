@@ -1,5 +1,6 @@
 {% extends "recipients/base.html" %}
 {% block content %}
+{% if perms.mailings.can_stop_mailings %}
 <div class="row">
     <div class="col-6">
         <form class="row" method="post" enctype="multipart/form-data">
@@ -15,4 +16,5 @@
         </form>
     </div>
 </div>
+{% endif %}
 {% endblock %}

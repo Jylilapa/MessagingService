@@ -6,6 +6,7 @@
                   <div class="col">
                         <div class="card">
                             <div class="card-body">
+                                {% if user.is_authenticated and user == mailing.owner %}
                                 <h5 class="card-title">Рассылка</h5>
                                 <p class="card-text">Сообщение: {{ mailing.message }} </p>
                                 <p class="card-text">Получатели: {{ mailing.recipients }} </p>
@@ -17,6 +18,10 @@
                                 <a class="btn btn-primary" href="{% url 'mailings:mailing_update' mailing.pk %}" role="button">Редактировать</a>
                                 <a class="btn btn-primary" href="{% url 'mailings:mailing_delete' mailing.pk %}" role="button">Удалить</a>
                                 {% if perms.mailings.can_stop_mailings %}
+                                <h5 class="card-title">Рассылка</h5>
+                                <p class="card-text">Сообщение: {{ mailing.message }} </p>
+                                <p class="card-text">Получатели: {{ mailing.recipients }} </p>
+                                <p class="card-text">Владелец: {{ mailing.owner }} </p>
                                 <a class="btn btn-primary" href="{% url 'mailings:mailing_moderator_form' mailing.pk %}" role="button">Заблокировать</a>
                                 {% endif %}
                             </div>

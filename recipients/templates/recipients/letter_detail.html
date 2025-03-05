@@ -1,5 +1,6 @@
 {% extends "recipients/base.html" %}
 {% block content %}
+{% if user.is_authenticated and user == letter.owner %}
     <div class="row mt-5 mx-auto p-2">
         <div class="col-1"></div>
             <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -17,4 +18,5 @@
             </div>
         <div class="col-1"></div>
     </div>
+{% endif %}
 {% endblock %}
