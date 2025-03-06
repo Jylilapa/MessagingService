@@ -61,12 +61,21 @@ class LetterListView(LoginRequiredMixin, ListView):
     template_name = "recipients/letter_list.html"
 
     def get_queryset(self):
-        return get_letters_from_cache()
+        user = self.request.user
+        if user.groups.filter(name="Менеджер").exists():
+            return Letter.objects.all()
+        return Letter.objects.filter(owner=user.id)
 
 
 class LetterDetailView(LoginRequiredMixin, DetailView):
     model = Letter
     template_name = "recipients/letter_detail.html"
+
+    def get_queryset(self):
+        user = self.request.user
+        if user.groups.filter(name="Менеджер").exists():
+            return Letter.objects.all()
+        return Letter.objects.filter(owner=user.id)
 
 
 class LetterCreateView(LoginRequiredMixin, CreateView):
