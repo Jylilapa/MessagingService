@@ -1,0 +1,25 @@
+{% extends "recipients/base.html" %}
+{% block content %}
+    {% if user.is_authenticated and user == mailing.owner or perms.mailings.can_view_list_mailings %}
+    <div class="row mt-5 mx-auto p-2">
+        <div class="col-1"></div>
+            <div class="row row-cols-1 row-cols-md-2 g-4">
+                {% for mailing in object_list %}
+                  <div class="col">
+                    <div class="card">
+                        <div class="card-body">
+                            <h5 class="card-title">Рассылка</h5>
+                            <p class="card-text">Дата и время первой отправки: {{ mailing.first_sent }}</p>
+                            <p class="card-text">Дата и время окончания отправки: {{ mailing.end_sent }}</p>
+                            <p class="card-text">Статус отправки: {{ mailing.status }} </p>
+                            <p class="card-text">Сообщение: {{ mailing.message }} </p>
+                            <a class="btn btn-primary" href="{% url 'mailings:mailing_detail' mailing.pk %}" role="button">Детали</a>
+                      </div>
+                    </div>
+                  </div>
+                {% endfor %}
+            </div>
+        <div class="col-1"></div>
+    </div>
+    {% endif %}
+{% endblock %}
